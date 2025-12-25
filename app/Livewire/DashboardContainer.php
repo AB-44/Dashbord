@@ -7,17 +7,31 @@ use Livewire\Attributes\On;
 
 class DashboardContainer extends Component
 {
-    // المتغير الذي يتحكم في الواجهة المعروضة
-    public $currentView = 'dashboard'; // 'dashboard' أو 'add-teacher'
+    public $currentView = 'dashboard';
 
-    // 1. الاستماع للحدث الذي يطلقه زر "إضافة معلم"
     #[On('show-add-teacher-form')]
+
     public function showAddTeacherForm()
     {
         $this->currentView = 'add-teacher-form';
     }
+     #[On('show-all-teachers')]
+    public function showAllTheachers(){
+        $this->currentView = 'list-teachers';
+    }
+    #[On('show-add-cours')]
+    public function showAddCours(){
+        $this->currentView = 'section-courses';
+    }
+    #[On('show-add-student')]
+    public function showAddStudent(){
+        $this->currentView = 'add-student';
+    }
+    #[On('show-prepation-student')]
+    public function ShowPrepationStudent(){
+        $this->currentView = 'institute.prepation-students';
+    }
 
-    //الرجوع إلى الصفحة الرئيسية (بعد الحفظ/الإلغاء)
     #[On('show-dashboard')]
     public function showDashboard()
     {

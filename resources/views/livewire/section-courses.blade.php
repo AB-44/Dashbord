@@ -5,57 +5,43 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="saveTeacher" class="space-y-4">
+    <form wire:submit.prevent="SaveCours" class="space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
 
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name <span class="text-red-500">*</span></label>
-                <input type="text" id="name" wire:model.defer="name"
+                <label for="title" class="block text-sm font-medium text-gray-300 mb-1">Title <span class="text-red-500">*</span></label>
+                <input type="text" id="title" wire:model.defer="title"
                        class="w-full px-4 py-2 bg-[#1d2237] border border-gray-700 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-white placeholder-gray-500 text-sm"
-                       placeholder="Enter full name">
-                @error('name') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                       placeholder="Enter Full Title">
+                @error('title') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address <span class="text-red-500">*</span></label>
-                <input type="email" id="email" wire:model.defer="email"
+                <label for="details" class="block text-sm font-medium text-gray-300 mb-1">Details<span class="text-red-500">*</span></label>
+                <input type="details" id="details" wire:model.defer="details"
                        class="w-full px-4 py-2 bg-[#1d2237] border border-gray-700 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-white placeholder-gray-500 text-sm"
-                       placeholder="Enter email">
-                @error('email') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                       placeholder="Enter details">
+                @error('details') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
-
             <div>
-                <label for="phone" class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
-                <input type="text" id="phone" wire:model.defer="phone"
+                <label for="Date" class="block text-sm font-medium text-gray-300 mb-1">Date</label>
+                <input type="date" id="Date" wire:model.defer="Date"
                        class="w-full px-4 py-2 bg-[#1d2237] border border-gray-700 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-white placeholder-gray-500 text-sm"
                        placeholder="0599178518">
-                @error('phone') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                @error('Date') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
-
-            <div>
-                <label for="corse_id" class="block text-sm font-medium text-gray-300 mb-1">Responsible Course</label>
-                <select id="corse_id" wire:model.defer="corse_id"
-                        class="w-full px-4 py-2 bg-[#1d2237] border border-gray-700 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-white text-sm appearance-none">
-                    <option value="" disabled selected>Select the course</option>
-                    @foreach ($courses as $cours)
-                        <option value="{{ $cours->id }}">{{ $cours->title }}</option>
-                    @endforeach
-                </select>
-                @error('corse_id') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
-            </div>
-        </div>
 
         <div>
-    <label class="block text-sm font-medium text-gray-300 mb-1">Address</label>
+    <label class="block text-sm font-medium text-gray-300 mb-1">About cours</label>
     <input type="text"
-           wire:model="address"
+           wire:model="about_cours"
            class="w-full px-4 py-2 bg-[#1d2237] border border-gray-700 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-white placeholder-gray-500 text-sm"
-           placeholder="Enter address">
-    @error('address') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+           placeholder="Enter about cours">
+    @error('about_cours') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
 </div>
 
         <div>
-            <label class="block text-sm font-medium text-gray-300 mb-1">Profile Picture</label>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Cours Picture</label>
                <div>
             <input type="file" id="img" wire:model="img" accept="image/*"
                    class="w-full text-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-500 file:text-white hover:file:bg-teal-600 cursor-pointer">
@@ -76,8 +62,8 @@
             <button type="submit"
                     wire:loading.attr="disabled"
                     class="px-6 py-2 text-sm font-medium text-white bg-[#00a99d] rounded-lg hover:bg-[#008f84] transition disabled:opacity-50">
-                <span wire:loading.remove wire:target="saveTeacher">Add Teacher</span>
-                <span wire:loading wire:target="saveTeacher">Saving...</span>
+                <span wire:loading.remove wire:target="SaveCours">Add Cours</span>
+                <span wire:loading wire:target="SaveCours">Saving...</span>
             </button>
         </div>
     </form>

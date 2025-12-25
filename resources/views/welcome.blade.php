@@ -5,14 +5,15 @@
     <title>Dashboard</title>
 
     <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url('https://cdn.tailwindcss.com') }}"></script>
     <link rel="stylesheet" href="{{ url('css/Tob_public.css') }}">
 
     <style>
         body { background-color: #1d2237; }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8g359ssQvM0jQ53H55y/dZ8h+B/j3YJ5E8Y1+D/S9H5Y9g+" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{ url('https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css') }}" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8g359ssQvM0jQ53H55y/dZ8h+B/j3YJ5E8Y1+D/S9H5Y9g+" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @livewireStyles
 </head>
 <body class="text-white">
@@ -65,7 +66,10 @@
 >
    Add Teacher
 </a>
-        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+
+<a class="p-2 text-sm hover:text-teal-400 cursor-pointer"
+onclick="Livewire.dispatch('show-all-teachers')"
+>
          All Teachers
         </a>
         <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
@@ -91,7 +95,7 @@
     >
      <a
     class="p-2 text-sm hover:text-teal-400 cursor-pointer"
-    wire:click="$dispatch('open-add-student-form')"
+    onclick="Livewire.dispatch('show-add-student')"
 >
     Add Student
 </a>
@@ -123,7 +127,9 @@
     <div
         class="dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ml-10 flex flex-col"
     >
-        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer"
+        onclick="Livewire.dispatch('show-add-cours')"
+        >
            Add Course
         </a>
         <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
@@ -151,7 +157,92 @@
             <a class="flex items-center gap-3 p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer">
                 <i class="ri-mail-line"></i> Email
             </a>
+
+            {{-- section 2 --}}
+            <p class="text-gray-400 mt-6 mb-2 text-sm">Events and processes</p>
+
+        {{-- Preparation --}}
+
+        <div class="w-full">
+    <button
+        class="dropdown-btn w-full flex items-center justify-between p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer"
+    >
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Preparation</span>
+        </div>
+        <i class="ri-arrow-left-s-line dropdown-arrow"></i>
+    </button>
+
+    <div
+        class="dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ml-10 flex flex-col"
+    >
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+        <i class="ri-presentation-line"></i>
+           Teachers
+        </a>
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer"
+        onclick="Livewire.dispatch('show-prepation-student')"
+        >
+        <i class="ri-graduation-cap-line"></i>
+
+       Students
+        </a>
+    </div>
+
+</div>
+{{-- end Preparation --}}
+
+            {{-- exams --}}
+           <div class="w-full">
+    <button
+        class="dropdown-btn w-full flex items-center justify-between p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer"
+    >
+        <div class="flex items-center gap-3">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <span>Exams</span>
+        </div>
+        <i class="ri-arrow-left-s-line dropdown-arrow"></i>
+    </button>
+
+    <div
+        class="dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ml-10 flex flex-col"
+    >
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+           Add exam
+        </a>
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+       All exams
+        </a>
+           <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+         new exam
+        </a>
+
+    </div>
+
+</div>
+{{-- end exams --}}
+
+      <a class="flex items-center gap-3 p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer">
+                <i class="ri-verified-badge-line"></i> Results
+            </a>
+
         </nav>
+        {{-- section 3 --}}
+        <p class="text-gray-400 mt-6 mb-2 text-sm">Other</p>
+        {{-- Other --}}
+                <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+           <a class="flex items-center gap-3 p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer">
+                <i class="fa-regular fa-user"></i> Profile
+            </a>
+
+            <a class="flex items-center gap-3 p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+
+            <a class="flex items-center gap-3 p-3 hover:bg-[#2a304b] rounded-xl cursor-pointer">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
 
         <!-- Help -->
         <button class="mt-5 bg-[#2a304b] p-3 rounded-xl flex items-center justify-center">
@@ -169,7 +260,7 @@
         <!-- Search -->
 <div class="input-wrapper">
   <button class="icon">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+    <svg xmlns="{{ url('http://www.w3.org/2000/svg') }}" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
       <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
       <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
     </svg>
@@ -231,15 +322,13 @@
     </div>
 </div>
 <script src="{{ url('JS/main.js') }}"></script>
-<script src="https://kit.fontawesome.com/6b7beae2cf.js" crossorigin="anonymous"></script>
+<script src="{{ url('https://kit.fontawesome.com/6b7beae2cf.js') }}" crossorigin="anonymous"></script>
+
 @livewireScripts
 </body>
 </html>
 
 {{-- Tailwind --}}
-
-
-
 
 
 

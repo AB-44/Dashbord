@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->integer('phone');
             $table->string('img');
-            $table->foreignId('class_id')->constrained('student_class');
+            $table->string('address')->nullable();
+            $table->foreignId('class_id')->constrained('student_classes');
             $table->timestamps();
         });
     }

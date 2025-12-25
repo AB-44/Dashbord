@@ -3,21 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\teacher;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-use Livewire\Attributes\On; // لاستقبال الحدث من AddTeacher
 
 class ListTeachers extends Component
 {
 
-    protected $listeners = ['teacher-added' => '$refresh'];
 
-      #[On('teacher-added')]
-      #[On('show-dashboard')]
+    protected $listeners = ['deleteTeacher', 'editTeacher'];
 
+    public function deleteTeacher($id)
+    {
+
+        $teacher = teacher::find($id);
+        if ($teacher) {
+            if ($teacher->img) {
+                Storage::disk('public')->delete($teacher->img);
+            }
+            $teacher->delete();
+            $this->dispatch('teacher-deleted');
+        }
+    }
+    public function editTeacher($id)
+{
+    // إرسال الحدث لكومبوننت الفورم
+    $this->dispatch('openEditTeacher', id: $id);
+}
 
     public function render()
     {
-        // جلب جميع المعلمين لعرضهم في الجدول
         $teachers = teacher::with('courses')->get();
 
 

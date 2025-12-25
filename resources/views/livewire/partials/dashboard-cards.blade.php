@@ -2,7 +2,7 @@
 
 <div class="bg-[#262c45] p-6 rounded-xl">
     <p class="text-gray-400 text-sm mb-2">TOTAL TEACHERS</p>
-    <h2 class="text-3xl font-bold mb-6">70</h2>
+    <h2 class="text-3xl font-bold mb-6">{{  \App\Models\teacher::count()  }}</h2>
 
     <div class="flex items-center gap-4">
         <div class="w-12 h-12 bg-teal-600/30 rounded-full flex items-center justify-center">
@@ -14,7 +14,7 @@
 
 <div class="bg-[#262c45] p-6 rounded-xl">
     <p class="text-gray-400 text-sm mb-2">TOTAL STUDENTS</p>
-    <h2 class="text-3xl font-bold mb-6">1200</h2>
+    <h2 class="text-3xl font-bold mb-6">{{  \App\Models\student::count()  }}</h2>
 
     <div class="flex items-center gap-4">
         <div class="w-12 h-12 bg-orange-600/30 rounded-full flex items-center justify-center">
@@ -55,3 +55,4 @@
         <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
     </div>
 </div>
+

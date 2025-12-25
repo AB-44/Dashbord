@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('prepations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('teachers_id')->constrained('teachers');
-            $table->foreignid('students_id')->constrained('students');
-            $table->foreignId('cours_id')->constrained('courses');
-            $table->foreignId('class_id')->constrained('student_class');
+            $table->foreignId('teachers_id')->nullable()->constrained('teachers');
+            $table->foreignid('students_id')->nullable()->constrained('students');
+            $table->foreignId('cours_id')->nullable()->constrained('courses');
+            $table->foreignId('class_id')->nullable()->constrained('student_classes');
             $table->string('attendance_status');
             $table->string('absence_reason')->nullable();
             $table->timestamp('check_in_at')->nullable();

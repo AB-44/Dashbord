@@ -8,6 +8,7 @@ class DashboardCards extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard-cards');
+        return view('livewire.partials.dashboard-cards');
+
     }
 }

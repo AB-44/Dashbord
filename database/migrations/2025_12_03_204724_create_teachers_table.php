@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->integer('phone');
             $table->string('img');
+            $table->string('address')->nullable();
             $table->foreignId('corse_id')->constrained('courses');
             $table->timestamps();
         });
