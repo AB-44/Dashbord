@@ -1,25 +1,47 @@
-// البحث عن جميع الأزرار التي تحمل الفئة 'dropdown-btn'
-const dropdownBtns = document.querySelectorAll(".dropdown-btn");
 
+const dropdownBtns = document.querySelectorAll(".dropdown-btn");
 dropdownBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-        // تحديد القائمة المنسدلة (Menu) والسهم (Arrow) المرتبطين بهذا الزر
+
         const menu = btn.nextElementSibling;
+
         const arrow = btn.querySelector(".dropdown-arrow");
 
-        // التحقق مما إذا كانت القائمة مفتوحة حالياً (isOpen)
         const isOpen = menu.style.maxHeight !== "0px" && menu.style.maxHeight !== "";
 
         if (isOpen) {
-            // حالة الإغلاق: السهم يتجه إلى اليسار (الاتجاه الأساسي للأيقونة)
             menu.style.maxHeight = "0px";
-            // الاتجاه الافتراضي للرمز هو اليسار، لذا نستخدم 0 درجة أو أي قيمة أخرى تجعله لليسار
             arrow.style.transform = "rotate(0deg)";
         } else {
-            // حالة الفتح: السهم يتجه إلى الأسفل (نحتاج 270 درجة أو -90 درجة دوران)
             menu.style.maxHeight = "200px";
-            // 270deg = لليسار (0) -> للأعلى (90) -> لليمين (180) -> للأسفل (270)
-            arrow.style.transform = "rotate(270deg)"; // <--- تم التعديل هنا ليتجه للأسفل
+            arrow.style.transform = "rotate(270deg)";
         }
     });
 });
+
+
+  const avatar = document.querySelector('.avatar');
+  const dropdownMenu = document.getElementById('dropdownMenu2');
+
+  // إظهار القائمة عند النقر
+  avatar.addEventListener('click', function(e) {
+    e.stopPropagation(); // لمنع التفاعل مع العناصر الأخرى
+    dropdownMenu.classList.toggle('show');
+  });
+
+  // إخفاء القائمة عند النقر في أي مكان آخر في الصفحة
+  document.addEventListener('click', function(e) {
+    if (!avatar.contains(e.target)) {
+      dropdownMenu.classList.remove('show');
+    }
+  });
+
+  // إضافة حدث للعناصر داخل القائمة (اختياري)
+  document.querySelectorAll('.dropdown-item2').forEach(item => {
+    item.addEventListener('click', function() {
+      alert('تم اختيار: ' + this.textContent.trim());
+      dropdownMenu.classList.remove('show'); // إغلاق القائمة بعد الاختيار
+    });
+  });
+
+

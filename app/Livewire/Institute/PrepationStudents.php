@@ -3,48 +3,47 @@
 namespace App\Livewire\Institute;
 
 use App\Models\cours;
-use App\Models\prepation;
 use App\Models\student;
-use App\Models\student_class;
+use App\Models\prepation;
 use Livewire\Component;
 
 class PrepationStudents extends Component
 {
-    public $prepation_id;
-    public $students_id;
     public $cours_id;
-    public $class_id;
-    public $attendance_status;
-    public $absence_reason;
 
-    public function SavePrepationStudent(){
-        $this->validate([
-            'students_id'=>'required|exists:students,id',
-            'cours_id'=>'required|exists:courses,id',
-            'class_id'=>'required|exists:student_classes,id',
-            'attendance_status'=>'required|string|max:20',
-            'absence_reason'=>'required|string|max:255'
-        ]);
-  prepation::updateOrCreate(
-    [
-        // الشروط (ابحث عن تحضير لهذا الطالب في هذا الكورس وهذا الفصل)
-        'students_id' => $this->students_id,
-        'cours_id'    => $this->cours_id,
-        'class_id'    => $this->class_id,
-    ],
-    [
+    public function mount($coursId = null)
+    {
 
-        'attendance_status' => $this->attendance_status,
-        'absence_reason'    => $this->absence_reason,
-    ]
-);
-session()->flash('success','The student is registered');
+        $this->cours_id = $coursId ?? 1;
     }
+
+    public function saveAttendance($studentId, $status)
+    {
+        $this->validate([
+            'cours_id' => 'required|exists:courses,id',
+        ]);
+
+        prepation::updateOrCreate(
+            [
+                'students_id' => $studentId,
+                'cours_id'    => $this->cours_id,
+            ],
+            [
+                'attendance_status' => $status,
+            ]
+        );
+
+        session()->flash('success', 'Attendance registered!');
+    }
+
     public function render()
     {
-        $students = student::all();
-        $courses = cours::all();
-        $clases = student_class::all();
-        return view('livewire.institute.prepation-students',compact('students','clases','courses'));
+        $students = student::whereHas('courses', function ($query) {
+            $query->where('cours_id', $this->cours_id);
+        })->with('prepation')->get();
+        $course = cours::find($this->cours_id);
+        $allCourses = cours::all();
+
+        return view('livewire.institute.prepation-students', compact('students','course','allCourses'));
     }
 }

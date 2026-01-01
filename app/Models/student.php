@@ -11,7 +11,10 @@ class student extends Model
         return $this->belongsTo(student_class::class,'class_id');
     }
             public function prepation(){
-            return $this->belongsTo(prepation::class,'students_id');
+            return $this->hasMany(prepation::class,'students_id');
+        }
+        public function courses(){
+            return $this->belongsToMany(cours::class,'course_students', 'student_id', 'cours_id');
         }
     protected $guarded = [];
 

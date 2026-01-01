@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('class_id')->nullable()->constrained('student_classes');
             $table->string('attendance_status');
             $table->string('absence_reason')->nullable();
-            $table->timestamp('check_in_at')->nullable();
+            $table->date('attendance_date')->nullable();
             $table->timestamps();
         });
     }

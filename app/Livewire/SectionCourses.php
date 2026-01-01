@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\cours;
+use App\Models\student;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -52,6 +53,7 @@ class SectionCourses extends Component
     }
     public function render()
     {
+        $students = student::with('courses')->get();
         return view('livewire.section-courses');
     }
 }

@@ -14,5 +14,9 @@ class cours extends Model
               public function prepation(){
             return $this->belongsTo(prepation::class,'cours_id');
         }
+        public function students()
+{
+    return $this->belongsToMany(student::class, 'course_students', 'cours_id', 'student_id');
+}
 
 }

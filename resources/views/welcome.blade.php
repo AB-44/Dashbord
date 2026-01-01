@@ -5,14 +5,14 @@
     <title>Dashboard</title>
 
     <!-- Tailwind -->
-    <script src="{{ url('https://cdn.tailwindcss.com') }}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url('css/Tob_public.css') }}">
 
     <style>
         body { background-color: #1d2237; }
     </style>
-    <link href="{{ url('https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css') }}" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8g359ssQvM0jQ53H55y/dZ8h+B/j3YJ5E8Y1+D/S9H5Y9g+" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8g359ssQvM0jQ53H55y/dZ8h+B/j3YJ5E8Y1+D/S9H5Y9g+" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @livewireStyles
 </head>
@@ -99,7 +99,9 @@ onclick="Livewire.dispatch('show-all-teachers')"
 >
     Add Student
 </a>
-        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+        <a class="p-2 text-sm hover:text-teal-400 cursor-pointer"
+        onclick="Livewire.dispatch('show-all-students')"
+        >
            All Students
         </a>
           <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
@@ -135,7 +137,9 @@ onclick="Livewire.dispatch('show-all-teachers')"
         <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
        All Courses
         </a>
-           <a class="p-2 text-sm hover:text-teal-400 cursor-pointer">
+           <a class="p-2 text-sm hover:text-teal-400 cursor-pointer"
+
+           >
          Info Cours
         </a>
 
@@ -260,7 +264,7 @@ onclick="Livewire.dispatch('show-all-teachers')"
         <!-- Search -->
 <div class="input-wrapper">
   <button class="icon">
-    <svg xmlns="{{ url('http://www.w3.org/2000/svg') }}" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
       <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
       <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
     </svg>
@@ -305,11 +309,22 @@ onclick="Livewire.dispatch('show-all-teachers')"
             </div>
 
             <!-- User Avatar -->
-            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-teal-400 cursor-pointer">
-                <img src="https://i.pravatar.cc/150"
-                     class="w-full h-full object-cover">
-            </div>
+        <div class="avatar-container">
+  <div class="avatar">
+    <img src="{{ url('storage/img/Me_edate_black.jpg') }}" alt="User Avatar">
+  </div>
 
+  <div class="dropdown-menu2" id="dropdownMenu2">
+    <div class="dropdown-item">
+<i class="fa-regular fa-user"></i>Your Profile
+    </div>
+    <div class="dropdown-item">
+<i class="fa-solid fa-gear"></i>Settings
+    </div>
+
+  </div>
+</div>
+{{-- end user avater --}}
         </div>
     </div>
 
@@ -322,7 +337,7 @@ onclick="Livewire.dispatch('show-all-teachers')"
     </div>
 </div>
 <script src="{{ url('JS/main.js') }}"></script>
-<script src="{{ url('https://kit.fontawesome.com/6b7beae2cf.js') }}" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/6b7beae2cf.js" crossorigin="anonymous"></script>
 
 @livewireScripts
 </body>

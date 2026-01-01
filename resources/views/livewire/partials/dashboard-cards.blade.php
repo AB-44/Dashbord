@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="{{ url('css/DashBord_card.css') }}">
+</head>
+
 
 
 <div class="bg-[#262c45] p-6 rounded-xl">
@@ -54,5 +58,61 @@
         <span class="bg-teal-500 w-8 h-8 flex items-center justify-center rounded-full mx-auto">7</span>
         <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
     </div>
+
+
 </div>
+
+{{-- start attend --}}
+
+  <div class="chart-container bg-[#262c45] p-6 rounded-xl">
+    <canvas id="attendanceChart"></canvas>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color: #f57c00;"></div>
+        <span>Late</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color: #90caf9;"></div>
+        <span>Absent</span>
+      </div>
+    </div>
+  </div>
+
+  {{-- end attend --}}
+
+  {{-- start Notice --}}
+    <div class="notice-board">
+    <div class="notice-board-header">
+      <div class="notice-board-title">Notice Board</div>
+      <div class="more-options">⋯</div>
+    </div>
+
+    <!-- الإشعار الأول -->
+    <div class="notice-item">
+      <div class="notice-date">August 19, 2025</div>
+      <div class="notice-text">
+        Orientation program for new students of Grade 8 will be held on September 5, 2025 in the school auditorium.
+      </div>
+      <div class="notice-sender">Ms. Emily Brown</div>
+      <div class="notice-department">(Student Affairs)</div>
+    </div>
+
+    <!-- الإشعار الثاني -->
+    <div class="notice-item">
+      <div class="notice-date">September 15, 2025</div>
+      <div class="notice-text">
+        Science Fair will be organized on September 25, 2025. All participants should submit their project names by September 20.
+      </div>
+      <div class="notice-sender">Dr. Michael Patel</div>
+      <div class="notice-department">(Science Department)</div>
+    </div>
+
+  </div>
+{{-- end notice --}}
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url('JS/DashBord_card.js') }}"></script>
+
 

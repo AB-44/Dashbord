@@ -17,11 +17,6 @@ class AddTeacherForm extends Component
     public $img;
     public $address;
     public $teacher_id;
-    protected $listeners = [
-    'show-edit-teacher-form' => 'setEditTeacher',
-    'show-add-teacher-form' => 'resetForm',
-];
-
 public function resetForm()
 {
     $this->reset();
@@ -50,7 +45,6 @@ public function saveTeacher()
         'address'=>'nullable|string|max:255',
     ];
 
-    // الصورة مطلوبة فقط في الإضافة
     if (!$this->teacher_id) {
         $rules['img'] = 'required|image|max:1024';
     } else {
@@ -77,12 +71,12 @@ public function saveTeacher()
             'img' => $photoPath
         ]
     );
-    
+
 
 
     $this->resetForm();
 
-    session()->flash('success', 'تمت العملية بنجاح');
+    session()->flash('success', 'The operation was completed successfully');
 
     $this->dispatch('teacher-added')->to(ListTeachers::class);
     $this->dispatch('show-dashboard')->to(ListTeachers::class);

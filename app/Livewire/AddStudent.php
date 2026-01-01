@@ -29,20 +29,33 @@ class AddStudent extends Component
         $this->class_id = $student->class_id;
     }
     public function saveStudent(){
-         $this->validate([
+         $rules = [
             'name'=>'required|string|max:255',
             'email'=>'required|string|max:255',
             'phone' => 'required|digits_between:8,12',
-            'img'=>'nullable|image|max:1024',
             'address'=>'required|string|max:255',
             'class_id'=>'required|exists:student_classes,id'
 
-        ]);
-        $student = student::find($this->student_id);
-     $photoPath = null;
-        if($this->img){
-            $photoPath = $this->img->store('students_photos', 'public');
-        }
+        ];
+
+
+      if (!$this->student_id) {
+        $rules['img'] = 'required|image|max:1024';
+    } else {
+        $rules['img'] = 'nullable|image|max:1024';
+    }
+
+    $this->validate($rules);
+
+    $student = student::find($this->student_id);
+    $photoPath = $student?->img;
+
+    if ($this->img) {
+        $photoPath = $this->img->store('student_photos', 'public');
+    }
+
+
+
 
         student::updateOrCreate(
             ['id'=>$this->student_id],
@@ -54,9 +67,11 @@ class AddStudent extends Component
             'class_id'=> $this->class_id,
             'img'=>$photoPath
         ]);
+
+
         $this->student_id = null;
         session()->flash('success','The student is registered'.$this->name.' success ');
-        
+
 
     }
 

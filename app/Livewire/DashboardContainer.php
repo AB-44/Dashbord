@@ -15,22 +15,43 @@ class DashboardContainer extends Component
     {
         $this->currentView = 'add-teacher-form';
     }
+
+        #[On('open-edit-teacher')]
+    public function openEditTeacher()
+    {
+        $this->currentView = 'add-teacher-form';
+    }
+
      #[On('show-all-teachers')]
     public function showAllTheachers(){
         $this->currentView = 'list-teachers';
     }
+
+        #[On('show-all-students')]
+    public function showAllStudents(){
+        $this->currentView = 'section-student.list-students';
+    }
+
+
+
+
     #[On('show-add-cours')]
     public function showAddCours(){
         $this->currentView = 'section-courses';
     }
+
+
     #[On('show-add-student')]
     public function showAddStudent(){
         $this->currentView = 'add-student';
     }
+
+
     #[On('show-prepation-student')]
     public function ShowPrepationStudent(){
         $this->currentView = 'institute.prepation-students';
     }
+
 
     #[On('show-dashboard')]
     public function showDashboard()

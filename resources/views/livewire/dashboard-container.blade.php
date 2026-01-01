@@ -28,6 +28,13 @@
         <div class="bg-[#262c45] p-6 rounded-xl shadow-lg mt-8">
             <livewire:add-student />
         </div>
+
+          @elseif ($currentView === 'section-student.list-students')
+        <h1 class="text-3xl font-semibold mb-1 text-teal-400">All Students</h1>
+        <div class="bg-[#262c45] p-6 rounded-xl shadow-lg mt-8">
+            <livewire:section-student.list-students />
+        </div>
+
             @elseif ($currentView === 'institute.prepation-students')
         <h1 class="text-3xl font-semibold mb-1 text-teal-400">prepation Student</h1>
         <div class="bg-[#262c45] p-6 rounded-xl shadow-lg mt-8">
